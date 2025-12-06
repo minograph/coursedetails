@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="Smart Coaching Centre" content="Rajdeep / RC Web Studio">
+
+  <title>Smart Coaching Crntre</title> <!-- CLIENT: Institute Name -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --card: rgba(15, 23, 42, 0.9);
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.18);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --radius-xl: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      color: var(--text-main);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3.5rem;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #a855f7, #6366f1, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.7);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .brand-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .scs-logo {
+      height: 34px;
+      width: 34px;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      background: radial-gradient(circle at top left, rgba(129, 140, 248, 0.28), rgba(15, 23, 42, 0.9));
+      font-size: 0.8rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: 2.6rem;
+      align-items: center;
+      padding-top: 2.2rem;
+    }
+
+    .hero-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .hero-kicker span.bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(to right, #a855f7, #6366f1, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+      max-width: 32rem;
+    }
+
+    .hero-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.28), rgba(15, 23, 42, 0.95));
+      color: var(--text-main);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #020617;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      box-shadow: 0 18px 40px rgba(79, 70, 229, 0.65);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.65rem 1.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* HERO right card (stats + carousel) */
+    .hero-right {
+      background: radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.15rem 1.15rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .stats-strip {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .stats-strip span strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    /* Carousel */
+    .carousel-shell {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      height: 210px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: #020617;
+    }
+
+    .c-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.65s ease;
+    }
+
+    .c-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(72%);
+      transform: scale(1.04);
+    }
+
+    .c-slide.active {
+      opacity: 1;
+    }
+
+    .c-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.6rem;
+    }
+
+    .c-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .c-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      max-width: 14rem;
+    }
+
+    .c-nav {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .c-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .c-dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .c-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.7rem;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(15, 23, 42, 0.55);
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .c-arrow.left { left: 10px; }
+    .c-arrow.right { right: 10px; }
+    .c-arrow:hover { background: rgba(15, 23, 42, 0.9); }
+
+    /* COURSES */
+    .section {
+      margin-top: 3.2rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+    }
+
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 24rem;
+    }
+
+    .badge-soft {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .course-card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.05rem 1.05rem 1.15rem;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.75);
+    }
+
+    .course-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.12);
+      color: #bbf7d0;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+
+    .course-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .course-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT */
+    .contact-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 1.8rem;
+      margin-top: 1.6rem;
+    }
+
+    .form-card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.15rem 1.15rem 1.3rem;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.85);
+    }
+
+    .form-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .field {
+      margin-bottom: 0.75rem;
+    }
+
+    .field label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.4);
+    }
+
+    .contact-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.12), rgba(15, 23, 42, 0.95));
+      border-radius: var(--radius-xl);
+      padding: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .contact-label {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .contact-highlight {
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    /* WhatsApp FAB */
+    .fab-wa {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #22c55e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      box-shadow: 0 18px 40px rgba(22, 163, 74, 0.8);
+      cursor: pointer;
+      z-index: 40;
+      color: #ecfdf5;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right {
+        order: -1;
+      }
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .contact-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .shell {
+        padding-inline: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="https://res.cloudinary.com/dlt2s4f50/image/upload/v1764954251/logo-search-grid-2x-removebg-preview_qw9bfu.png"
+            class="scs-logo"
+          />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Smart Coaching Centre</span> <!-- CLIENT: Institute Name -->
+          <span class="brand-tag">Coaching for 6–10 & HS</span> <!-- CLIENT: Tagline small -->
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a
+        class="nav-cta"
+        href="https://wa.me/919954419924?text=Hi%2C%20I%20want%20to%20join%20a%20demo%20class" 
+        target="_blank"
+      > <!-- CLIENT: WhatsApp number -->
+        ✨ Demo Class
+      </a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-kicker"><span class="bullet"></span> Result-Oriented Coaching</div>
+
+        <h1>
+          Strong <span>Concepts</span>,  
+          Better <span>Scores</span>.
+        </h1> <!-- CLIENT: Big heading -->
+
+        <p class="hero-sub">
+          Personalized attention, regular tests and smart notes designed
+          to help students perform better in school & competitive exams.
+        </p> <!-- CLIENT: Short description -->
+
+        <div class="hero-features">
+          <span class="pill">🎯 Experienced Faculty</span>
+          <span class="pill">📚 Small Batches</span>
+          <span class="pill">📊 Weekly Tests</span>
+          <span class="pill">💬 Daily Doubt Support</span>
+        </div>
+
+        <div class="hero-actions">
+          <a
+            href="https://wa.me/919954419924?text=Hi%2C%20I%20want%20to%20join%20a%20demo%20class"
+            target="_blank"
+          > <!-- CLIENT: WhatsApp number -->
+            <button class="btn-primary">WhatsApp for Demo Class</button>
+          </a>
+
+          <a href="#courses">
+            <button class="btn-ghost">View All Courses</button>
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Limited seats per batch. Priority given to students who book demo early.
+        </p>
+      </div>
+
+      <aside class="hero-right">
+        <div class="stats-strip">
+          <span><strong>150+</strong> Students guided</span> <!-- CLIENT: Change if needed -->
+          <span><strong>90%+</strong> Board success</span>
+          <span><strong>Since</strong> 2019</span> <!-- CLIENT: Year -->
+        </div>
+
+        <div class="carousel-shell">
+          <!-- SLIDE 1 -->
+          <div class="c-slide active">
+            <img src="class1.jpg" alt="Classroom 1" /> <!-- CLIENT: Image 1 -->
+            <div class="c-overlay">
+              <div class="c-title">Interactive Smart Classes</div>
+              <div class="c-sub">
+                Concept-centric teaching with board & digital support
+                for maximum understanding.
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2 -->
+          <div class="c-slide">
+            <img src="class2.jpg" alt="Classroom 2" /> <!-- CLIENT: Image 2 -->
+            <div class="c-overlay">
+              <div class="c-title">Dedicated Doubt Sessions</div>
+              <div class="c-sub">
+                Extra doubt-solving hours for students who need
+                personal attention.
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 3 -->
+          <div class="c-slide">
+            <img src="class3.jpg" alt="Classroom 3" /> <!-- CLIENT: Image 3 -->
+            <div class="c-overlay">
+              <div class="c-title">Regular Test Series</div>
+              <div class="c-sub">
+                Chapter-wise & full syllabus tests with detailed
+                performance tracking.
+              </div>
+            </div>
+          </div>
+
+          <button class="c-arrow left" type="button">&#10094;</button>
+          <button class="c-arrow right" type="button">&#10095;</button>
+
+          <div class="c-nav">
+            <div class="c-dot active"></div>
+            <div class="c-dot"></div>
+            <div class="c-dot"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="section" id="courses">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Courses we offer</h2>
+          <p class="section-sub">
+            Customize course names and descriptions below as per your client’s classes and exam focus.
+          </p>
+        </div>
+        <span class="badge-soft">You can rename every card for each institute.</span>
+      </div>
+
+      <div class="card-grid">
+        <article class="course-card">
+          <span class="course-pill">FOUNDATION</span>
+          <h3>Class 6–8 (All Subjects)</h3> <!-- CLIENT: Course 1 -->
+          <p>
+            Strong basics in Maths, Science & English with regular school exam
+            preparation and doubt solving.
+          </p>
+          <div class="course-meta">
+            <span>🕒 5 days / week</span>
+            <span>📍 Offline</span>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <span class="course-pill">FOUNDATION</span>
+          <h3>Class 9–10 (All Subjects)</h3> <!-- CLIENT: Course 2 -->
+          <p>
+            Strong basics in Maths, Science & English with regular school exam
+            preparation and doubt solving.
+          </p>
+          <div class="course-meta">
+            <span>🕒 5–6 days / week</span>
+            <span>📍 Offline / Hybrid</span>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <span class="course-pill">ARTS STREAM</span>
+          <h3>11-12</h3> <!-- CLIENT: Course 3 -->
+          <p>
+            In-depth concept coverage, PYQs and numerical practice for board exams
+            and entrances.
+          </p>
+          <div class="course-meta">
+            <span>🕒 Weekend + Tests</span>
+            <span>📍 Special Batches</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" id="contact">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Book a demo or ask your query</h2>
+          <p class="section-sub">
+            Parents / students can fill this form and the enquiry will directly reach WhatsApp.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-shell">
+        <div class="form-card">
+          <h3>Quick Enquiry Form</h3>
+          <p>
+            Fill your details below. We will respond on WhatsApp with suitable batch & timing.
+          </p>
+
+          <div class="field">
+            <label for="name">Student Name</label>
+            <input id="name" type="text" placeholder="Your full name" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input
+              id="phone"
+              type="text"
+              placeholder="Your phone number"
+              maxlength="10"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            />
+          </div>
+
+          <div class="field">
+            <label for="msg">Class / Exam & Query <span style="color:#6b7280;">(optional)</span></label>
+            <textarea
+              id="msg"
+              placeholder="Eg: Class 10 Maths help needed OR I want to join demo class"
+            ></textarea>
+          </div>
+
+          <button type="button" class="btn-primary" id="sendEnquiry">
+            Send Enquiry on WhatsApp
+          </button>
+
+          <p class="hero-note" style="margin-top:0.7rem;">
+            If you leave the message empty, it will automatically send: 
+            <strong>“I want to join demo class”</strong>.
+          </p>
+        </div>
+
+        <div class="contact-info">
+          <div><span class="contact-label">Institute:</span>Smart Coaching Centre</div> <!-- CLIENT: Name -->
+          <div><span class="contact-label">Address:</span>Garajan, Nagaon, Assam</div> <!-- CLIENT: Address -->
+          <div>
+            <span class="contact-label">Timing:</span>
+            Morning & Evening batches (7:00 AM – 9:00 PM)
+          </div> <!-- CLIENT: Timing -->
+          <div><span class="contact-label">Phone:</span> <span class="contact-highlight">+91 9954419924</span></div> <!-- CLIENT: Phone -->
+          <div><span class="contact-label">Landmark:</span>Garajan Bazar</div> <!-- CLIENT: Landmark -->
+          <div style="margin-top:0.5rem;">
+            For faster reply, ping us directly on WhatsApp using the green button.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span>Smart Coaching Centre. All rights reserved.
+      <!-- CLIENT: Institute Name -->
+    </footer>
+  </main>
+
+  <!-- Floating WhatsApp -->
+  <a
+    class="fab-wa"
+    href="https://wa.me/919954419924?text=Hi%2C%20I%20want%20to%20join%20a%20demo%20class"
+    target="_blank"
+  > <!-- CLIENT: WhatsApp number -->
+    💬
+  </a>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // footer year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+      // Carousel logic
+      const slides = document.querySelectorAll(".c-slide");
+      const dots = document.querySelectorAll(".c-dot");
+      const left = document.querySelector(".c-arrow.left");
+      const right = document.querySelector(".c-arrow.right");
+      let index = 0;
+
+      function showSlide(i) {
+        slides.forEach((s, n) => s.classList.toggle("active", n === i));
+        dots.forEach((d, n) => d.classList.toggle("active", n === i));
+      }
+
+      if (right) {
+        right.addEventListener("click", () => {
+          index = (index + 1) % slides.length;
+          showSlide(index);
+        });
+      }
+
+      if (left) {
+        left.addEventListener("click", () => {
+          index = (index - 1 + slides.length) % slides.length;
+          showSlide(index);
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          index = i;
+          showSlide(index);
+        });
+      });
+
+      setInterval(() => {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }, 4500);
+
+      // WhatsApp enquiry logic
+      const sendBtn = document.getElementById("sendEnquiry");
+      if (sendBtn) {
+        sendBtn.addEventListener("click", () => {
+          const nameInput = document.getElementById("name");
+          const phoneInput = document.getElementById("phone");
+          const msgInput = document.getElementById("msg");
+
+          const name = nameInput.value.trim();
+          const phone = phoneInput.value.trim();
+          const msg = msgInput.value.trim();
+
+          if (!name) {
+            alert("Please enter student name.");
+            nameInput.focus();
+            return;
+          }
+
+          if (!/^[0-9]{10}$/.test(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            phoneInput.focus();
+            return;
+          }
+
+          const wpNumber = "919954419924"; // CLIENT: WhatsApp number (91 + 10 digits)
+
+          const rawText =
+            ` New Coaching Enquiry\n\n` +
+            ` Name: ${name}\n` +
+            ` Phone: ${phone}\n` +
+            ` Class : ${msg || "I want to join demo class"}`;
+
+          const url = "https://wa.me/" + wpNumber + "?text=" + encodeURIComponent(rawText);
+          window.open(url, "_blank");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
